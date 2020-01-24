@@ -1,5 +1,8 @@
 # DotNetCafe 
 
+![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?color=6F4E37&label=SemVer)
+![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?color=6F4E37&label=License)
+
 ## Introdução
 
 O **DotNetCafe** é uma biblioteca com tipos complexos bem definidos. Pois no dia-a-dia lidamos com inúmeros valores candidatos a tipos complexos que acabam sendo rebaixados ou menosprezados apenas a strings, causando uma bagunça tremenda no código devido a quantidade de métodos auxiliares que são elaborados para o tratamento destes.
