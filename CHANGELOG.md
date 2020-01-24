@@ -12,11 +12,8 @@ e este projeto adere ao [Versionamento Semântico].
 - Este arquivo CHANGELOG para manter todos informados de todas as alterações notáveis. [@nokcode]
 - O arquivo AUTHORS listando todos os colaboradores deste projeto. [@nokcode]
 - O arquivo THIRD-PARTY-NOTICES com as informações dos softwares de terceiros utilizados neste projeto e suas respectivas licenças.  [@nokcode]
-
-### Modificado
-
-- Adicionado o escudo "SemVer" com a versão atual deste projeto. [@nokcode]
-- Adicionado o escudo "License" informando a licença utilizada neste projeto. [@nokcode]
+- O escudo "SemVer" com a versão atual deste projeto no arquivo README. [@nokcode]
+- O escudo "License" informando a licença utilizada neste projeto no arquivo README. [@nokcode]
 
 ## [0.1.0] - 2020-01-23
 
