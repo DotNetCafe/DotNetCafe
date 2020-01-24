@@ -187,7 +187,7 @@ namespace DotNetCafe.Test
         public void TestToStringWithInvalidFormatArg()
         {
             var exception = Assert.Throws<FormatException>(() => A.ToString("?"));
-            Assert.Equal("The format '?' was not supported.", exception.Message);
+            Assert.Equal("O formato '?' não é suportado.", exception.Message);
         }
 
         #endregion
