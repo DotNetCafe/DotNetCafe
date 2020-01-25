@@ -20,6 +20,7 @@ e este projeto adere ao [Versionamento Semântico].
 ### Adicionado
 
 - Adicionado o tipo CNPJ. Falta adicionar a documentação da API pública. [@nokcode]
+- Adicionado o projeto no NuGet. [@nokcode]
 
 [Não publicado]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
 [0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
