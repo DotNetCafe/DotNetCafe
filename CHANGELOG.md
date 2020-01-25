@@ -7,6 +7,8 @@ e este projeto adere ao [Versionamento Semântico].
 
 ## [Não publicado]
 
+## [0.1.0]
+
 ### Adicionado
 
 - Este arquivo CHANGELOG para manter todos informados de todas as alterações notáveis. [@nokcode]
@@ -14,13 +16,8 @@ e este projeto adere ao [Versionamento Semântico].
 - O arquivo THIRD-PARTY-NOTICES com as informações dos softwares de terceiros utilizados neste projeto e suas respectivas licenças.  [@nokcode]
 - O escudo "SemVer" com a versão atual deste projeto no arquivo README. [@nokcode]
 - O escudo "License" informando a licença utilizada neste projeto no arquivo README. [@nokcode]
-
-## [0.1.0] - 2020-01-23
-
-### Adicionado
-
-- Adicionado o tipo CNPJ. Falta adicionar a documentação da API pública. [@nokcode]
-- Adicionado o projeto no NuGet. [@nokcode]
+- O tipo CNPJ, porém, sem a documentação da API pública. [@nokcode]
+- A biblioteca no NuGet. [@nokcode]
 
 [Não publicado]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
 [0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
