@@ -51,17 +51,43 @@ $ dotnet restore
 
 ### 3. Divirta-se!
 
-```shell
-$ dotnet-script
+```csharp
+using DotNetCafe;
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Cnpj cnpj1 = GetCnpj("191");
+		Console.WriteLine($"Success: {cnpj1}");
+		
+		Cnpj cnpj2 = GetCnpj("00.000.000/0001-91");
+		Console.WriteLine($"Success: {cnpj2:N}");
+		
+		Console.WriteLine(cnpj1 == cnpj2);
+	}
+	
+	private static Cnpj GetCnpj(string input)
+	{
+		Cnpj cnpj = Cnpj.Empty;	
+		try
+		{
+			cnpj = Cnpj.Parse(input);
+		}
+		catch (ArgumentException ex)
+		{
+			Console.Error.WriteLine($"Fail: {input}: {ex.Message}");
+			Environment.Exit(1);
+		}
+		catch (FormatException ex)
+		{
+			Console.Error.WriteLine($"Fail: {input}: {ex.Message}");
+			Environment.Exit(1);
+		}
+		return cnpj;
+	}
+}
 ```
 
-```csharp
-> #r "src/DotNetCafe/bin/Debug/netstandard2.1/DotNetCafe.dll"
-> using DotNetCafe;
-> var x = Cnpj.Parse("191");
-> x
-["00.000.000/0001-91"]
-> var y = Cnpj.Parse("00.000.000/0001-91");
-> x == y
-true
-```
+Ou se preferir você pode testar no [.Net Fiddle](https://dotnetfiddle.net/gOFTHr) ;)
