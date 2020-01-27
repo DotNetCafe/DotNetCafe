@@ -12,7 +12,7 @@ e este projeto adere ao [Versionamento Semântico].
 - O escudo ".Net Core 3.1" com o status de build e test no arquivo README. [@nokcode]
 - O workflow CI para build e test quando ocorrerem eventos de push ou pull_request no branch master dentro da infraestrutura do [GitHub]. [@nokcode]
 
-## [0.1.0]
+## [0.1.0] - 2020-01-25
 
 ### Adicionado
 
