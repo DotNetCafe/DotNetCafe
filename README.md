@@ -21,20 +21,22 @@ DotNetCafe | .Net Core | .Net Standard
 
 ### Tipos Suportados
 
-Tabela de métodos e interfaces implementadas em cada tipo.
+A tabela abaixo possui os tipos suportados e a versão em que foi implantado ou modificado:
 
-Funcionalidade    | CNPJ
------------------ | ---- 
-ctor(string)      | sim
-Parse             | sim
-TryParse          | sim
-IsEmpty           | sim
-IComparable       | sim
-IComparable\<T>   | sim
-IEquatable\<T>    | sim
-IFormattable      | sim
-==, !=            | sim
-\>, <, >=, <=     | sim
+Funcionalidade    | CNPJ    | CPF
+----------------- | ------- | ------
+ctor(string)      | [0.1.0] | [N.P.]
+Parse             | [0.1.0] | [N.P.]
+TryParse          | [0.1.0] | [N.P.]
+IsEmpty           | [0.1.0] | [N.P.]
+IComparable       | [0.1.0] | [N.P.]
+IComparable\<T>   | [0.1.0] | [N.P.]
+IEquatable\<T>    | [0.1.0] | [N.P.]
+IFormattable      | [0.1.0] | [N.P.]
+==, !=            | [0.1.0] | [N.P.]
+\>, <, >=, <=     | [0.1.0] | [N.P.]
+
+*\***N.P.** não publicado.*
 
 ## Utilizando a biblioteca
 
@@ -92,3 +94,6 @@ public class Program
 ```
 
 Ou se preferir você pode testar no [.Net Fiddle](https://dotnetfiddle.net/gOFTHr) ;)
+
+[N.P.]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
+[0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
