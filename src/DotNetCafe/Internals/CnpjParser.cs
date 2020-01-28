@@ -1,4 +1,5 @@
 using System;
+using DotNetCafe.Globalization;
 
 namespace DotNetCafe.Internals
 {
@@ -43,10 +44,11 @@ namespace DotNetCafe.Internals
                 return exceptionKind switch
                 {
                     ParseExceptionKind.Argument => 
-                        new ArgumentException("O número do CNPJ é inválido", paramName),
+                        new ArgumentException(SR.ArgumentException_InvalidCnpjNumber, 
+                            paramName),
                     
                     ParseExceptionKind.Format => 
-                        new FormatException("O formato do CNPJ é inválido"),
+                        new FormatException(SR.FormatException_InvalidCnpjFormat),
 
                     _ => 
                         new InvalidOperationException(),

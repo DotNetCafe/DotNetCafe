@@ -1,8 +1,8 @@
 # DotNetCafe 
 
 ![.Net Core 3.1](https://github.com/DotNetCafe/DotNetCafe/workflows/.Net%20Core%203.1/badge.svg)
-![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?color=6F4E37&label=SemVer)
-![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?color=6F4E37&label=License)
+![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?label=SemVer&sort=semver)
+![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?label=License)
 
 ## Introdução
 
