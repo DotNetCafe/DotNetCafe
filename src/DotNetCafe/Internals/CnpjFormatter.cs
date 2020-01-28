@@ -1,3 +1,4 @@
+using DotNetCafe.Globalization;
 using System;
 using System.Globalization;
 
@@ -22,7 +23,7 @@ namespace DotNetCafe
                     return self.value.ToString(@"00\.000\.000\/0000\-00", formatProvider);
 
                 default:
-                    throw new FormatException($"O formato '{format}' não é suportado.");                    
+                    throw new FormatException(string.Format(SR.FormatException_InvalidFormat, format));                    
             }
         }
     }

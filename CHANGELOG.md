@@ -11,6 +11,8 @@ e este projeto adere ao [Versionamento Semântico].
 
 - O escudo ".Net Core 3.1" com o status de build e test no arquivo README. [@nokcode]
 - O workflow CI para build e test quando ocorrerem eventos de push ou pull_request no branch master dentro da infraestrutura do [GitHub]. [@nokcode]
+- O namespace DotNetCafe.Globalization contendo as mensagens de exceções para os idiomas inglês e português do Brasil. [@nokcode]
+- Adicionado os arquivos Directory.Build.props na hierarquia da solução para simplificar os arquivos csproj. [@nokcode]
 
 ## [0.1.0] - 2020-01-25
 

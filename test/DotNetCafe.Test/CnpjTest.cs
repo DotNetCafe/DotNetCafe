@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using Xunit;
+using DotNetCafe.Globalization;
 
 namespace DotNetCafe.Test
 {
     public class CnpjTest
     {
         #region Constants
-
+        
         const long A_NUMBER = 191L;
         const long B_NUMBER = 272L;
         const long C_NUMBER = 353L;
@@ -46,14 +47,14 @@ namespace DotNetCafe.Test
 
         public static IEnumerable<object[]> InvalidParseData => new List<object[]>
             {
-                new object[] { "000.000.000/0000-000", typeof(FormatException), "O formato do CNPJ é inválido" },
-                new object[] { "00.000.000/0000?00", typeof(FormatException), "O formato do CNPJ é inválido" },
-                new object[] { "00.000.000?0000-00", typeof(FormatException), "O formato do CNPJ é inválido" },
-                new object[] { "00.000?000/0000-00", typeof(FormatException), "O formato do CNPJ é inválido" },
-                new object[] { "00?000.000/0000-00", typeof(FormatException), "O formato do CNPJ é inválido" },
-                new object[] { "00.000.000/0000-00", typeof(ArgumentException), "O número do CNPJ é inválido" },
-                new object[] { "00.000.000/0001-00", typeof(ArgumentException), "O número do CNPJ é inválido" },
-                new object[] { "00.000.000/0001-90", typeof(ArgumentException), "O número do CNPJ é inválido" }
+                new object[] { "000.000.000/0000-000", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+                new object[] { "00.000.000/0000?00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+                new object[] { "00.000.000?0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+                new object[] { "00.000?000/0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+                new object[] { "00?000.000/0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+                new object[] { "00.000.000/0000-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
+                new object[] { "00.000.000/0001-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
+                new object[] { "00.000.000/0001-90", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber }
             };
 
         public static IEnumerable<object[]> InvalidTryParseData => new List<object[]>
@@ -187,7 +188,9 @@ namespace DotNetCafe.Test
         public void TestToStringWithInvalidFormatArg()
         {
             var exception = Assert.Throws<FormatException>(() => A.ToString("?"));
-            Assert.Equal("O formato '?' não é suportado.", exception.Message);
+            string expected = string.Format(SR.FormatException_InvalidFormat, "?");
+
+            Assert.Equal(expected, exception.Message);
         }
 
         #endregion

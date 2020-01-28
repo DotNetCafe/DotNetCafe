@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <data name="ArgumentException_InvalidCnpjNumber">
+        <value>Número de CNPJ inválido.</value>
+    </data>
+    <data name="FormatException_InvalidFormat">
+        <value>O formato {0} não é suportado.</value>
+    </data>
+    <data name="FormatException_InvalidCnpjFormat">
+        <value>Formato de CNPJ inválido.</value>
+    </data>
+</root>
