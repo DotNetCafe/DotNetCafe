@@ -7,7 +7,7 @@ namespace DotNetCafe.Test
     {
         #region IsEmpty
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestIsEmpty()
         {
             throw new NotImplementedException();
@@ -17,13 +17,13 @@ namespace DotNetCafe.Test
 
         #region Constructor
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestConstructor()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestConstructorThrowsException()
         {
             throw new NotImplementedException();
@@ -33,19 +33,19 @@ namespace DotNetCafe.Test
 
         #region Parse & TryParse
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestParse()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestParseThrowsException()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestTryParse()
         {
             throw new NotImplementedException();
@@ -55,7 +55,7 @@ namespace DotNetCafe.Test
 
         #region ToString
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestToString()
         {
             throw new NotImplementedException();
@@ -65,7 +65,7 @@ namespace DotNetCafe.Test
 
         #region Comparison
             
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestCompareTo()
         {
             throw new NotImplementedException();
@@ -75,13 +75,13 @@ namespace DotNetCafe.Test
 
         #region Equality
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestEquals()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestGetHashCode()
         {
             throw new NotImplementedException();
@@ -91,25 +91,25 @@ namespace DotNetCafe.Test
 
         #region Comparison Operators
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpGreaterThan()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpLesserThan()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpGreaterOrEqualTo()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpLesserOrEqualTo()
         {
             throw new NotImplementedException();
@@ -119,13 +119,13 @@ namespace DotNetCafe.Test
 
         #region Equality Operators
         
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpEqualTo()
         {
             throw new NotImplementedException();
         }
 
-        [Fact]
+        [Fact(Skip = "Not Implemented")]
         public void TestOpNotEqualTo()
         {
             throw new NotImplementedException();
