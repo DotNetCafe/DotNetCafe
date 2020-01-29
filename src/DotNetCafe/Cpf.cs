@@ -7,6 +7,13 @@ namespace DotNetCafe
     {
         public static readonly Cpf Empty;
 
+        internal readonly long number;
+
+        internal Cpf(long number)
+        {
+            this.number = number;
+        }
+
         public Cpf(string s)
         {
             throw new NotImplementedException();
@@ -19,13 +26,13 @@ namespace DotNetCafe
             throw new NotImplementedException();
         
         public bool Equals(Cpf value) =>
-            throw new NotImplementedException();
+            CpfEqualityComparer.Equals(this, value);
         
         public override bool Equals(object obj) =>
-            throw new NotImplementedException();
+            CpfEqualityComparer.Equals(this, obj);
         
         public override int GetHashCode() =>
-            throw new NotImplementedException();
+            CpfEqualityComparer.GetHashCode(this);
         
         public override string ToString() =>
             throw new NotImplementedException();
@@ -46,16 +53,16 @@ namespace DotNetCafe
             throw new NotImplementedException();
         
         public static bool IsEmpty(Cpf other) =>
-            throw new NotImplementedException();
+            CpfEqualityComparer.Equals(Empty, other);
         
         public static bool operator ==(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return CpfEqualityComparer.Equals(lhs, rhs);
         }
 
         public static bool operator !=(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return !CpfEqualityComparer.Equals(lhs, rhs);
         }
 
         public static bool operator >(Cpf lhs, Cpf rhs)

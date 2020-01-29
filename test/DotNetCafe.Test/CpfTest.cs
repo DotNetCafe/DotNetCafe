@@ -5,12 +5,20 @@ namespace DotNetCafe.Test
 {
     public class CpfTest
     {
+        #region Constants
+
+        const long A_NUMBER = 100_100_100_00L;
+        const long B_NUMBER = 200_200_200_00L;
+        const long C_NUMBER = 300_300_300_00L;
+
+        #endregion
+
         #region IsEmpty
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestIsEmpty()
         {
-            throw new NotImplementedException();
+            Assert.Equal(Cpf.Empty, new Cpf());
         }
 
         #endregion
@@ -75,16 +83,22 @@ namespace DotNetCafe.Test
 
         #region Equality
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestEquals()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(A_NUMBER);
+
+            Assert.True(a.Equals(b));
         }
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestGetHashCode()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(A_NUMBER);
+
+            Assert.Equal(a.GetHashCode(), b.GetHashCode());
         }
 
         #endregion
@@ -119,16 +133,22 @@ namespace DotNetCafe.Test
 
         #region Equality Operators
         
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpEqualTo()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(A_NUMBER);
+
+            Assert.True(a == b);
         }
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpNotEqualTo()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(B_NUMBER);
+
+            Assert.True(a != b);
         }
 
         #endregion
