@@ -73,10 +73,20 @@ namespace DotNetCafe.Test
 
         #region Comparison
             
-        [Fact(Skip = "Not Implemented")]
-        public void TestCompareTo()
+        [Fact]
+        public void TestCompareToNull()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+
+            Assert.True(a.CompareTo(null!) > 0);
+        }
+
+        [Fact]
+        public void TestCompareToObject()
+        {
+            var a = new Cpf(A_NUMBER);
+
+            Assert.True(a.CompareTo(new object()) > 0);
         }
 
         #endregion
@@ -105,28 +115,42 @@ namespace DotNetCafe.Test
 
         #region Comparison Operators
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpGreaterThan()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(C_NUMBER);
+            var b = new Cpf(B_NUMBER);
+
+            Assert.True(a > b);
         }
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpLesserThan()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(B_NUMBER);
+
+            Assert.True(a < b);
         }
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpGreaterOrEqualTo()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(C_NUMBER);
+            var b = new Cpf(C_NUMBER);
+            var c = new Cpf(B_NUMBER);
+
+            Assert.True(a >= b && a >= c);
         }
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestOpLesserOrEqualTo()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            var b = new Cpf(A_NUMBER);
+            var c = new Cpf(B_NUMBER);
+
+            Assert.True(a <= b && a <= c);
         }
 
         #endregion

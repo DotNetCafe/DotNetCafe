@@ -20,10 +20,10 @@ namespace DotNetCafe
         }
 
         public int CompareTo(object obj) =>
-            throw new NotImplementedException();
+            CpfComparer.Compare(this, obj);
         
         public int CompareTo(Cpf other) =>
-            throw new NotImplementedException();
+            CpfComparer.Compare(this, other);
         
         public bool Equals(Cpf value) =>
             CpfEqualityComparer.Equal(this, value);
@@ -67,22 +67,22 @@ namespace DotNetCafe
 
         public static bool operator >(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return CpfComparer.Compare(lhs, rhs) > 0;
         }
 
         public static bool operator <(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return CpfComparer.Compare(lhs, rhs) < 0;
         }
 
         public static bool operator >=(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return CpfComparer.Compare(lhs, rhs) >= 0;
         }
 
         public static bool operator <=(Cpf lhs, Cpf rhs)
         {
-            throw new NotImplementedException();
+            return CpfComparer.Compare(lhs, rhs) <= 0;
         }
     }
 }
