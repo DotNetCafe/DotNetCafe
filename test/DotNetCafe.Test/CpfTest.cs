@@ -1,4 +1,5 @@
 using System;
+using DotNetCafe.Globalization;
 using Xunit;
 
 namespace DotNetCafe.Test
@@ -63,10 +64,40 @@ namespace DotNetCafe.Test
 
         #region ToString
 
-        [Fact(Skip = "Not Implemented")]
+        [Fact]
         public void TestToString()
         {
-            throw new NotImplementedException();
+            var a = new Cpf(A_NUMBER);
+            string expected = "100.100.100-00";
+
+            Assert.Equal(expected, a.ToString());
+        }
+
+        [Fact]
+        public void TestToStringBarFormat()
+        {
+            var a = new Cpf(B_NUMBER);
+            string expected = "200200200/00";
+
+            Assert.Equal(expected, a.ToString("B"));
+        }
+
+        [Fact]
+        public void TestToStringNumericFormat()
+        {
+            var a = new Cpf(C_NUMBER);
+            string expected = "30030030000";
+
+            Assert.Equal(expected, a.ToString("N"));
+        }
+
+        [Fact]
+        public void TestToStringThrowsException()
+        {
+            var exception = Assert.Throws<FormatException>(() => new Cpf(A_NUMBER).ToString("?"));
+            string expected = string.Format(SR.FormatException_InvalidFormat, "?");
+
+            Assert.Equal(expected, exception.Message);
         }
 
         #endregion

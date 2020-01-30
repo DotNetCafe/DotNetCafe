@@ -35,16 +35,16 @@ namespace DotNetCafe
             CpfEqualityComparer.GetHashCode(this);
         
         public override string ToString() =>
-            throw new NotImplementedException();
+            CpfFormatter.Format(this, null!, null!);
 
         public string ToString(string format) =>
-            throw new NotImplementedException();
+            CpfFormatter.Format(this, format, null!);
         
         public string ToString(IFormatProvider formatProvider) =>
-            throw new NotImplementedException();
+            CpfFormatter.Format(this, null!, formatProvider);
         
         public string ToString(string format, IFormatProvider formatProvider) =>
-            throw new NotImplementedException();
+            CpfFormatter.Format(this, format, formatProvider);
         
         public static Cnpj Parse(string s) =>
             throw new NotImplementedException();
