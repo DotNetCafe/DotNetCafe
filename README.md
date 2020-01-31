@@ -1,10 +1,10 @@
 # DotNetCafe 
 
-![.Net Core 3.1](https://github.com/DotNetCafe/DotNetCafe/workflows/.Net%20Core%203.1/badge.svg)
-![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?label=SemVer&sort=semver)
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/DotNetCafe?label=NuGet)
-![Nuget](https://img.shields.io/nuget/dt/DotNetCafe?label=Downloads&logo=nuget&logoColor=blue)
-![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?label=License)
+[![.Net Core 3.1](https://github.com/DotNetCafe/DotNetCafe/workflows/.Net%20Core%203.1/badge.svg)](https://github.com/DotNetCafe/DotNetCafe/actions?query=workflow%3A%22.Net+Core+3.1%22)
+[![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?label=SemVer&sort=semver)](https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/DotNetCafe?label=NuGet&logo=nuget&logoColor=blue)](https://www.nuget.org/packages/DotNetCafe/)
+[![Nuget](https://img.shields.io/nuget/dt/DotNetCafe?label=Downloads&logo=nuget&logoColor=blue)](https://www.nuget.org/packages/DotNetCafe/0.1.0)
+[![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?label=License)](License.md)
 
 ## Introdução
 
