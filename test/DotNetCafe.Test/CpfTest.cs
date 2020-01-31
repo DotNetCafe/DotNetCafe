@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DotNetCafe.Globalization;
 using Xunit;
 
@@ -8,9 +9,40 @@ namespace DotNetCafe.Test
     {
         #region Constants
 
-        const long A_NUMBER = 100_100_100_00L;
-        const long B_NUMBER = 200_200_200_00L;
-        const long C_NUMBER = 300_300_300_00L;
+        const long A_NUMBER = 100_100_100_17L;
+        const long B_NUMBER = 200_200_200_23L;
+        const long C_NUMBER = 300_300_300_30L;
+
+        const string A_STRING = "100.100.100-17";
+        const string B_STRING = "200200200/23";
+        const string C_STRING = "30030030030";
+
+        #endregion
+
+        #region Helpers
+        
+        public static IEnumerable<object[]> ParseData => new List<object[]>
+        {
+            new object[] { A_STRING, new Cpf(A_NUMBER) },
+            new object[] { B_STRING, new Cpf(B_NUMBER) },
+            new object[] { C_STRING, new Cpf(C_NUMBER) }
+        };
+
+        public static IEnumerable<object[]> InvalidParseData => new List<object[]>
+        {
+            new object[] { "INVALID", typeof(FormatException), SR.FormatException_InvalidCpfFormat },
+            new object[] { "100.100?100-00", typeof(FormatException), SR.FormatException_InvalidCpfFormat },
+            new object[] { "100.100.100-07", typeof(ArgumentException), SR.ArgumentException_InvalidCpfNumber },
+            new object[] { "100.100.100-10", typeof(ArgumentException), SR.ArgumentException_InvalidCpfNumber }
+        };
+
+        public static IEnumerable<object[]> InvalidTryParseData => new List<object[]>
+        {
+            new object[] { "INVALID" },
+            new object[] { "100.100?100-00" },
+            new object[] { "100.100.100-07" },
+            new object[] { "100.100.100-10" }
+        };
 
         #endregion
 
@@ -26,38 +58,64 @@ namespace DotNetCafe.Test
 
         #region Constructor
 
-        [Fact(Skip = "Not Implemented")]
-        public void TestConstructor()
+        [Theory]
+        [MemberData(nameof(ParseData))]
+        public void TestConstructor(string s, Cpf expected)
         {
-            throw new NotImplementedException();
+            var actual = new Cpf(s);
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Not Implemented")]
-        public void TestConstructorThrowsException()
+        [Theory]
+        [MemberData(nameof(InvalidParseData))]
+        public void TestConstructorThrowsException(string s, Type type, string message)
         {
-            throw new NotImplementedException();
+            var actual = Assert.Throws(type, () => new Cpf(s));
+            
+            Assert.Equal(message, actual.Message);
         }
 
         #endregion
 
         #region Parse & TryParse
 
-        [Fact(Skip = "Not Implemented")]
-        public void TestParse()
+        [Theory]
+        [MemberData(nameof(ParseData))]
+        public void TestParse(string s, Cpf expected)
         {
-            throw new NotImplementedException();
+            var actual = Cpf.Parse(s);
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Not Implemented")]
-        public void TestParseThrowsException()
+        [Theory]
+        [MemberData(nameof(InvalidParseData))]
+        public void TestParseInvalidFormatThrowsException(string s, Type type, string message)
         {
-            throw new NotImplementedException();
+            var actual = Assert.Throws(type, () => Cpf.Parse(s));
+
+            Assert.Equal(message, actual.Message);
         }
 
-        [Fact(Skip = "Not Implemented")]
-        public void TestTryParse()
+        [Theory]
+        [MemberData(nameof(ParseData))]
+        public void TestTryParse(string s, Cpf expected)
         {
-            throw new NotImplementedException();
+            bool canParse = Cpf.TryParse(s, out Cpf actual);
+
+            Assert.True(canParse);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidTryParseData))]
+        public void TestInvalidTryParse(string s)
+        {
+            bool canParse = Cpf.TryParse(s, out Cpf actual);
+            
+            Assert.False(canParse);
+            Assert.Equal(Cpf.Empty, actual);
         }
 
         #endregion
@@ -68,27 +126,24 @@ namespace DotNetCafe.Test
         public void TestToString()
         {
             var a = new Cpf(A_NUMBER);
-            string expected = "100.100.100-00";
 
-            Assert.Equal(expected, a.ToString());
+            Assert.Equal(A_STRING, a.ToString());
         }
 
         [Fact]
         public void TestToStringBarFormat()
         {
             var a = new Cpf(B_NUMBER);
-            string expected = "200200200/00";
 
-            Assert.Equal(expected, a.ToString("B"));
+            Assert.Equal(B_STRING, a.ToString("B"));
         }
 
         [Fact]
         public void TestToStringNumericFormat()
         {
             var a = new Cpf(C_NUMBER);
-            string expected = "30030030000";
 
-            Assert.Equal(expected, a.ToString("N"));
+            Assert.Equal(C_STRING, a.ToString("N"));
         }
 
         [Fact]

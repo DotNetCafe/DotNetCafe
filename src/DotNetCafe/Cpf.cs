@@ -16,7 +16,7 @@ namespace DotNetCafe
 
         public Cpf(string s)
         {
-            throw new NotImplementedException();
+            this = CpfParser.Parse(s);
         }
 
         public int CompareTo(object obj) =>
@@ -46,11 +46,11 @@ namespace DotNetCafe
         public string ToString(string format, IFormatProvider formatProvider) =>
             CpfFormatter.Format(this, format, formatProvider);
         
-        public static Cnpj Parse(string s) =>
-            throw new NotImplementedException();
+        public static Cpf Parse(string s) =>
+            CpfParser.Parse(s);
         
-        public static bool TryParse(string s, out Cnpj result) =>
-            throw new NotImplementedException();
+        public static bool TryParse(string s, out Cpf result) =>
+            CpfParser.TryParse(s, out result);
         
         public static bool IsEmpty(Cpf other) =>
             CpfEqualityComparer.Equal(Empty, other);

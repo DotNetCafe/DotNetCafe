@@ -3,10 +3,16 @@
     <data name="ArgumentException_InvalidCnpjNumber">
         <value>Invalid CNPJ number.</value>
     </data>
+    <data name="ArgumentException_InvalidCpfNumber">
+        <value>Invalid CPF number.</value>
+    </data>
     <data name="FormatException_InvalidFormat">
         <value>The {0} format string is not supported.</value>
     </data>
     <data name="FormatException_InvalidCnpjFormat">
         <value>Invalid CNPJ format.</value>
+    </data>
+    <data name="FormatException_InvalidCpfFormat">
+        <value>Invalid CPF format.</value>
     </data>
 </root>

@@ -19,12 +19,18 @@ namespace DotNetCafe.Globalization
 
         public static string ArgumentException_InvalidCnpjNumber =>
             GetString(nameof(ArgumentException_InvalidCnpjNumber));
+        
+        public static string ArgumentException_InvalidCpfNumber =>
+            GetString(nameof(ArgumentException_InvalidCpfNumber));
 
         public static string FormatException_InvalidFormat =>
             GetString(nameof(FormatException_InvalidFormat));
 
         public static string FormatException_InvalidCnpjFormat =>
             GetString(nameof(FormatException_InvalidCnpjFormat));
+        
+        public static string FormatException_InvalidCpfFormat =>
+            GetString(nameof(FormatException_InvalidCpfFormat));
 
         private static string GetString(string name) =>
             Resources.GetString(name);
