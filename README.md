@@ -4,7 +4,7 @@
 [![SemVer](https://img.shields.io/github/v/tag/DotNetCafe/DotNetCafe?label=SemVer&sort=semver)](https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/)
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/DotNetCafe?label=NuGet&logo=nuget&logoColor=blue)](https://www.nuget.org/packages/DotNetCafe/)
 [![Nuget](https://img.shields.io/nuget/dt/DotNetCafe?label=Downloads&logo=nuget&logoColor=blue)](https://www.nuget.org/packages/DotNetCafe/0.1.0)
-[![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?label=License)](License.md)
+[![License](https://img.shields.io/github/license/DotNetCafe/DotNetCafe?label=License)](LICENSE)
 
 ## Introdução
 
