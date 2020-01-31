@@ -34,4 +34,4 @@ e este projeto adere ao [Versionamento Semântico].
 
 [Mantenha um Changelog]: https://keepachangelog.com/pt-BR/1.0.0/
 [Versionamento Semântico]: https://semver.org/lang/pt-BR/spec/v2.0.0.html
-[GitHub]: https://github.com/z
+[GitHub]: https://github.com/
