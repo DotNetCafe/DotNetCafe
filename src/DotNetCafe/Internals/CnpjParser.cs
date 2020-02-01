@@ -117,8 +117,8 @@ namespace DotNetCafe.Internals
                 return;
             }
 
-            if (Char.GetNumericValue(dst[12]) != DigitChecker.Get(dst, FirstDigitCheckerWeights) ||
-                Char.GetNumericValue(dst[13]) != DigitChecker.Get(dst, SecondDigitCheckerWeights))
+            if (Char.GetNumericValue(dst[12]) != CheckDigit.Calculate(dst, FirstDigitCheckerWeights) ||
+                Char.GetNumericValue(dst[13]) != CheckDigit.Calculate(dst, SecondDigitCheckerWeights))
             {
                 pr.SetException(ParseExceptionKind.Argument);
                 return;
