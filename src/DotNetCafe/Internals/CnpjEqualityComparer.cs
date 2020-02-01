@@ -9,12 +9,12 @@ namespace DotNetCafe.Internals
 
         public static bool Equals(Cnpj lhs, Cnpj rhs)
         {
-            return lhs.value == rhs.value;
+            return lhs.number == rhs.number;
         }
 
         public static int GetHashCode(Cnpj obj)
         {
-            return (typeof(Cnpj), obj.value).GetHashCode();
+            return (typeof(Cnpj), obj.number).GetHashCode();
         }
     }
 }
