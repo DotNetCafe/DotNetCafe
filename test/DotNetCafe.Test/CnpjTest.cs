@@ -8,99 +8,46 @@ namespace DotNetCafe.Test
     public class CnpjTest
     {
         #region Constants
-        
+
         const long A_NUMBER = 191L;
         const long B_NUMBER = 272L;
         const long C_NUMBER = 353L;
-        const string GENERAL_FORMAT = "G";
-        const string NUMERIC_FORMAT = "N";
-        const string A_GENERAL_FORMAT = "00.000.000/0001-91";
-        const string A_NUMERIC_FORMAT = "00000000000191";
-        const string B_GENERAL_FORMAT = "00.000.000/0002-72";
-        const string B_NUMERIC_FORMAT = "00000000000272";
-        const string C_GENERAL_FORMAT = "00.000.000/0003-53";
-        const string C_NUMERIC_FORMAT = "00000000000353";
+        const long D_NUMBER = 434L;
 
+        const string A_STRING = "00.000.000/0001-91";
+        const string B_STRING = "00000000000272";
+        const string C_STRING = "000.000.000/0003-53";
+        const string D_STRING = "000000000000434";
+        
         #endregion
 
         #region Helpers
 
-        public static readonly Cnpj A = new Cnpj(A_NUMBER);
-        public static readonly Cnpj B = new Cnpj(B_NUMBER);
-        public static readonly Cnpj C = new Cnpj(C_NUMBER);
-
         public static IEnumerable<object[]> ParseData => new List<object[]>
-            {
-                new object[] { "000.000.000/0001-91", A },
-                new object[] { "000.000.000/0002-72", B },
-                new object[] { "000.000.000/0003-53", C },
-                new object[] { "00.000.000/0001-91",  A },
-                new object[] { "00.000.000/0002-72",  B },
-                new object[] { "00.000.000/0003-53",  C },
-                new object[] { "000000000000191", A },
-                new object[] { "000000000000272", B },
-                new object[] { "000000000000353", C },
-                new object[] { "00000000000191", A },
-                new object[] { "00000000000272", B },
-                new object[] { "00000000000353", C }        
-            };
+        {
+            new object[] { A_STRING, new Cnpj(A_NUMBER) },
+            new object[] { B_STRING, new Cnpj(B_NUMBER) },
+            new object[] { C_STRING, new Cnpj(C_NUMBER) },
+            new object[] { D_STRING, new Cnpj(D_NUMBER) }
+        };
 
-        public static IEnumerable<object[]> InvalidParseData => new List<object[]>
-            {
-                new object[] { "000.000.000/0000-000", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
-                new object[] { "00.000.000/0000?00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
-                new object[] { "00.000.000?0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
-                new object[] { "00.000?000/0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
-                new object[] { "00?000.000/0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
-                new object[] { "00.000.000/0000-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
-                new object[] { "00.000.000/0001-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
-                new object[] { "00.000.000/0001-90", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber }
-            };
+        public static IEnumerable<object[]> ParseThrowsExceptionData => new List<object[]>
+        {
+            new object[] { "", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+            new object[] { "00?000.000/0000-00", typeof(FormatException), SR.FormatException_InvalidCnpjFormat },
+            new object[] { "00.000.000/0000-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
+            new object[] { "00.000.000/0001-00", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber },
+            new object[] { "00.000.000/0001-90", typeof(ArgumentException), SR.ArgumentException_InvalidCnpjNumber }
+        };
 
         public static IEnumerable<object[]> InvalidTryParseData => new List<object[]>
-            {
-                new object[] { "000.000.000/0000-000" },
-                new object[] { "00.000.000/0000?00" },
-                new object[] { "00.000.000?0000-00" },
-                new object[] { "00.000?000/0000-00" },
-                new object[] { "00?000.000/0000-00" },
-                new object[] { "00.000.000/0001-00" },
-                new object[] { "00.000.000/0001-90" }
-            };
-
-        public static IEnumerable<object[]> ToStringData => new List<object[]>
-            {
-                new object[] { A_GENERAL_FORMAT, A },
-                new object[] { B_GENERAL_FORMAT, B },
-                new object[] { C_GENERAL_FORMAT, C }
-            };
-
-        public static IEnumerable<object[]> ToStringWithFormatArgData => new List<object[]>
-            {
-                new object[] { A_GENERAL_FORMAT, A, null! },
-                new object[] { A_GENERAL_FORMAT, A, GENERAL_FORMAT },
-                new object[] { A_NUMERIC_FORMAT, A, NUMERIC_FORMAT },
-                new object[] { B_GENERAL_FORMAT, B, null! },
-                new object[] { B_GENERAL_FORMAT, B, GENERAL_FORMAT },
-                new object[] { B_NUMERIC_FORMAT, B, NUMERIC_FORMAT },
-                new object[] { C_GENERAL_FORMAT, C, null! },
-                new object[] { C_GENERAL_FORMAT, C, GENERAL_FORMAT },
-                new object[] { C_NUMERIC_FORMAT, C, NUMERIC_FORMAT },
-            };
-        
-        public static IEnumerable<object[]> EqualToData => new List<object[]>
-            {   
-                new object[] { new Cnpj(A_NUMBER), A },
-                new object[] { new Cnpj(B_NUMBER), B },
-                new object[] { new Cnpj(C_NUMBER), C }
-            };
-        
-        public static IEnumerable<object[]> NotEqualToData => new List<object[]>
-            {
-                new object[] { A, B },
-                new object[] { B, C },
-                new object[] { C, A }
-            };
+        {
+            new object[] { "" },
+            new object[] { "00?000.000/0000-00" },
+            new object[] { "00.000.000/0000-00" },
+            new object[] { "00.000.000/0001-00" },
+            new object[] { "00.000.000/0001-90" },
+        };
 
         #endregion
 
@@ -109,88 +56,91 @@ namespace DotNetCafe.Test
         [Fact]
         public void TestIsEmpty()
         {
-            Assert.True(Cnpj.IsEmpty(Cnpj.Empty));
+            Assert.Equal(Cnpj.Empty, new Cnpj());
         }
 
         #endregion
 
-        #region Constructor 
+        #region Constructor
 
         [Theory]
         [MemberData(nameof(ParseData))]
         public void TestConstructor(string s, Cnpj expected)
         {
-            Assert.Equal(expected, new Cnpj(s));
+            var actual = new Cnpj(s);
+
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(InvalidParseData))]
-        public void TestConstructorThrowsException(string s, Type exceptionType, string message)
+        [MemberData(nameof(ParseThrowsExceptionData))]
+        public void TestConstructorThrowsException(string s, Type type, string message)
         {
-            var exception = Assert.Throws(exceptionType, () => new Cnpj(s));
-            Assert.StartsWith(message, exception.Message);
+            var actual = Assert.Throws(type, () => new Cnpj(s));
+
+            Assert.StartsWith(message, actual.Message);
         }
 
         #endregion
-        
+
         #region Parse & TryParse
 
         [Theory]
         [MemberData(nameof(ParseData))]
         public void TestParse(string s, Cnpj expected)
         {
-            Assert.Equal(expected, Cnpj.Parse(s));
+            var actual = Cnpj.Parse(s);
+
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [MemberData(nameof(InvalidParseData))]
-        public void TestParseThrowsException(string s, Type exceptionType, string message)
+        [MemberData(nameof(ParseThrowsExceptionData))]
+        public void TestParseThrowsException(string s, Type type, string message)
         {
-            var exception = Assert.Throws(exceptionType, () => Cnpj.Parse(s));
-            Assert.StartsWith(message, exception.Message);
+            var actual = Assert.Throws(type, () => Cnpj.Parse(s));
+
+            Assert.StartsWith(message, actual.Message);
         }
 
         [Theory]
         [MemberData(nameof(ParseData))]
         public void TestTryParse(string s, Cnpj expected)
         {
-            Assert.True(Cnpj.TryParse(s, out Cnpj result));
-            Assert.Equal(expected, result);
+            bool canParse = Cnpj.TryParse(s, out Cnpj actual);
+
+            Assert.True(canParse);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
         [MemberData(nameof(InvalidTryParseData))]
-        public void TestTryParseReturnFalse(string s)
+        public void TestInvalidTryParse(string s)
         {
-            Assert.False(Cnpj.TryParse(s, out Cnpj result));
-            Assert.Equal(Cnpj.Empty, result);
+            bool canParse = Cnpj.TryParse(s, out Cnpj actual);
+
+            Assert.False(canParse);
+            Assert.Equal(Cnpj.Empty, actual);
         }
 
         #endregion
 
         #region ToString
 
-        [Theory]
-        [MemberData(nameof(ToStringData))]
-        public void TestToString(string expected, Cnpj obj)
+        [Fact]
+        public void TestToString()
         {
-            Assert.Equal(expected, obj.ToString());
-        }
+            var a = new Cnpj(A_NUMBER);
 
-        [Theory]
-        [MemberData(nameof(ToStringWithFormatArgData))]
-        public void TestToStringWithFormatArg(string expected, Cnpj obj, string format)
-        {
-            Assert.Equal(expected, obj.ToString(format));
+            Assert.Equal(A_STRING, a.ToString());
         }
 
         [Fact]
-        public void TestToStringWithInvalidFormatArg()
+        public void TestToStringNumericFormat()
         {
-            var exception = Assert.Throws<FormatException>(() => A.ToString("?"));
-            string expected = string.Format(SR.FormatException_InvalidFormat, "?");
+            var b = new Cnpj(B_NUMBER);
 
-            Assert.Equal(expected, exception.Message);
+            Assert.Equal(B_STRING, b.ToString("N"));
         }
 
         #endregion
@@ -200,54 +150,66 @@ namespace DotNetCafe.Test
         [Fact]
         public void TestCompareToNull()
         {
-            Assert.Equal(1, A.CompareTo(null!));
+            var a = new Cnpj(A_NUMBER);
+
+            Assert.True(a.CompareTo(null!) > 0);
         }
 
         [Fact]
         public void TestCompareToObject()
         {
-            Assert.Equal(1, A.CompareTo(new object()));
+            var a = new Cnpj(A_NUMBER);
+
+            Assert.True(a.CompareTo(new object()) > 0);
         }
 
         [Fact]
-        public void TestCompareTo()
+        public void TestLesserCompareToGreater()
         {
-            Assert.True(A.CompareTo(A) == 0);
-            Assert.True(B.CompareTo(B) == 0);
-            Assert.True(C.CompareTo(C) == 0);
+            var a = new Cnpj(A_NUMBER);
+            var b = new Cnpj(B_NUMBER);
 
-            Assert.True(A.CompareTo(B) < 0);
-            Assert.True(B.CompareTo(C) < 0);
+            Assert.True(a.CompareTo(b) < 0);
+        }
 
-            Assert.True(B.CompareTo(A) > 0);
-            Assert.True(C.CompareTo(A) > 0);
+        [Fact]
+        public void TestGreaterCompareToLesser()
+        {
+            var c = new Cnpj(C_NUMBER);
+            var d = new Cnpj(D_NUMBER);
+
+            Assert.True(d.CompareTo(c) > 0);
+        }
+
+        [Fact]
+        public void TestCompareToSame()
+        {
+            var a1 = new Cnpj(A_NUMBER);
+            var a2 = new Cnpj(A_NUMBER);
+
+            Assert.True(a1.CompareTo(a2) == 0);
         }
 
         #endregion
 
         #region Equality
 
-        [Theory]
-        [MemberData(nameof(EqualToData))]
-        public void TestEquals(Cnpj lhs, Cnpj rhs)
+        [Fact]
+        public void TestEquals()
         {
-            Assert.True(lhs.Equals(rhs));
+            var a1 = new Cnpj(A_NUMBER);
+            var a2 = new Cnpj(A_NUMBER);
+
+            Assert.True(a1.Equals(a2));
         }
 
         [Fact]
         public void TestGetHashCode()
         {
-            int sameAsA = new Cnpj(A_NUMBER).GetHashCode();
-            int sameAsB = new Cnpj(B_NUMBER).GetHashCode();
-            int sameAsC = new Cnpj(C_NUMBER).GetHashCode();
+            var a = new Cnpj(A_NUMBER);
+            var b = new Cnpj(A_NUMBER);
 
-            Assert.True(sameAsA.GetHashCode() == A.GetHashCode());
-            Assert.True(sameAsB.GetHashCode() == B.GetHashCode());
-            Assert.True(sameAsC.GetHashCode() == C.GetHashCode());
-
-            Assert.False(A.GetHashCode() == B.GetHashCode());
-            Assert.False(B.GetHashCode() == C.GetHashCode());
-            Assert.False(C.GetHashCode() == A.GetHashCode());
+            Assert.Equal(a.GetHashCode(), b.GetHashCode());
         }
 
         #endregion
@@ -257,49 +219,61 @@ namespace DotNetCafe.Test
         [Fact]
         public void TestOpGreaterThan()
         {
-            Assert.True(B > A);
+            var d = new Cnpj(D_NUMBER);
+            var c = new Cnpj(C_NUMBER);
+
+            Assert.True(d > c);
         }
 
         [Fact]
         public void TestOpLesserThan()
         {
-            Assert.True(A < B);
+            var a = new Cnpj(A_NUMBER);
+            var b = new Cnpj(B_NUMBER);
+
+            Assert.True(a < b);
         }
 
         [Fact]
-        public void TestOpGreaterThanOrEqualTo()
+        public void TestOpGreaterOrEqualTo()
         {
-            Cnpj sameAsB = new Cnpj(B_NUMBER);
+            var a = new Cnpj(C_NUMBER);
+            var b = new Cnpj(C_NUMBER);
+            var c = new Cnpj(B_NUMBER);
 
-            Assert.True(B >= A);
-            Assert.True(B >= sameAsB);
+            Assert.True(a >= b && a >= c);
         }
 
         [Fact]
-        public void TestOpLesserThanOrEqualTo()
+        public void TestOpLesserOrEqualTo()
         {
-            Cnpj sameAsA = new Cnpj(A_NUMBER);
+            var a = new Cnpj(A_NUMBER);
+            var b = new Cnpj(A_NUMBER);
+            var c = new Cnpj(B_NUMBER);
 
-            Assert.True(A <= B);
-            Assert.True(A <= sameAsA);
+            Assert.True(a <= b && a <= c);
         }
 
         #endregion
 
         #region Equality Operators
 
-        [Theory]
-        [MemberData(nameof(EqualToData))]
-        public void TestOpEqualTo(Cnpj lhs, Cnpj rhs)
+        [Fact]
+        public void TestOpEqualTo()
         {
-            Assert.True(lhs == rhs);
+            var a1 = new Cnpj(A_NUMBER);
+            var a2 = new Cnpj(A_NUMBER);
+
+            Assert.True(a1 == a2);
         }
 
-        [Theory]
-        [MemberData(nameof(NotEqualToData))]
-        public void TestOpNotEqualTo(Cnpj lhs, Cnpj rhs)
+        [Fact]
+        public void TestOpNotEqualTo()
         {
-            Assert.True(lhs != rhs);
+            var a = new Cnpj(A_NUMBER);
+            var b = new Cnpj(B_NUMBER);
+
+            Assert.True(a != b);
         }
 
         #endregion
