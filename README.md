@@ -19,24 +19,24 @@ A qualidade do código é concisa e limpa, suficientemente eficaz para efetuar a
 ### .Net Core e .NET Standard
 DotNetCafe | .Net Core | .Net Standard
 ---------- | --------- | -------------
-0.1.0      | 3.1       | 2.1          
+0.2.0      | 3.1       | 2.1          
 
 ### Tipos Suportados
 
-A tabela abaixo possui os tipos suportados e a versão em que foi implantado ou modificado:
+A tabela abaixo possui os tipos suportados e a versão no qual foi implantado:
 
 Funcionalidade    | CNPJ    | CPF
------------------ | ------- | ------
-ctor(string)      | [0.1.0] | [N.P.]
-Parse             | [0.1.0] | [N.P.]
-TryParse          | [0.1.0] | [N.P.]
-IsEmpty           | [0.1.0] | [N.P.]
-IComparable       | [0.1.0] | [N.P.]
-IComparable\<T>   | [0.1.0] | [N.P.]
-IEquatable\<T>    | [0.1.0] | [N.P.]
-IFormattable      | [0.1.0] | [N.P.]
-==, !=            | [0.1.0] | [N.P.]
-\>, <, >=, <=     | [0.1.0] | [N.P.]
+----------------- | ------- | -------
+ctor(string)      | [0.1.0] | [0.2.0]
+Parse             | [0.1.0] | [0.2.0]
+TryParse          | [0.1.0] | [0.2.0]
+IsEmpty           | [0.1.0] | [0.2.0]
+IComparable       | [0.1.0] | [0.2.0]
+IComparable\<T>   | [0.1.0] | [0.2.0]
+IEquatable\<T>    | [0.1.0] | [0.2.0]
+IFormattable      | [0.1.0] | [0.2.0]
+==, !=            | [0.1.0] | [0.2.0]
+\>, <, >=, <=     | [0.1.0] | [0.2.0]
 
 *\***N.P.** não publicado.*
 
@@ -45,7 +45,7 @@ IFormattable      | [0.1.0] | [N.P.]
 ### 1. Configure o CSPROJ
 
 ```xml
-<PackageReference Include="DotNetCafe" Version="0.1.0" />
+<PackageReference Include="DotNetCafe" Version="0.2.0" />
 ```
 
 ### 2. Restaure os pacotes
@@ -64,38 +64,34 @@ public class Program
 {
 	public static void Main()
 	{
-		Cnpj cnpj1 = GetCnpj("191");
-		Console.WriteLine($"Success: {cnpj1}");
-		
-		Cnpj cnpj2 = GetCnpj("00.000.000/0001-91");
-		Console.WriteLine($"Success: {cnpj2:N}");
-		
-		Console.WriteLine(cnpj1 == cnpj2);
-	}
-	
-	private static Cnpj GetCnpj(string input)
-	{
-		Cnpj cnpj = Cnpj.Empty;	
+		Cnpj cnpj = Cnpj.Empty;
+		Cpf cpf = Cpf.Empty;
+
 		try
 		{
-			cnpj = Cnpj.Parse(input);
+			cnpj = new Cnpj("00.000.000/0001-91");
+			cpf = new Cpf("100.100.100-17");
 		}
-		catch (ArgumentException ex)
+		catch (ArgumentException e)
 		{
-			Console.Error.WriteLine($"Fail: {input}: {ex.Message}");
+			Console.WriteLine($"Error: {e.Message}");
 			Environment.Exit(1);
 		}
-		catch (FormatException ex)
+		catch (FormatException e)
 		{
-			Console.Error.WriteLine($"Fail: {input}: {ex.Message}");
+			Console.WriteLine($"Error: {e.Message}");
 			Environment.Exit(1);
 		}
-		return cnpj;
+
+		Console.WriteLine($"CNPJ: {cnpj} (General format)");
+		Console.WriteLine($"CNPJ: {cnpj:N} (Numeric format)");
+		Console.WriteLine($"CPF: {cpf} (General format)");
+		Console.WriteLine($"CPF: {cpf:B} (New format)");
+		Console.WriteLine($"CPF: {cpf:N} (Numeric format)");
 	}
 }
 ```
 
-Ou se preferir você pode testar no [.Net Fiddle](https://dotnetfiddle.net/gOFTHr) ;)
-
 [N.P.]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
 [0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
+[0.2.0]: httos://github.com/DotNetCafe/DotNetCafe/tree/v0.2.0/

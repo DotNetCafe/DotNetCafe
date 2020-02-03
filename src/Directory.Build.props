@@ -1,3 +1,21 @@
 <Project>
     <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+    <PropertyGroup>
+        <VersionPrefix>0.2.0</VersionPrefix>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/DotNetCafe/DotNetCafe.git</RepositoryUrl>
+        <Authors>nokcode</Authors>
+        <Copyright>Rafael Silva Prestação de Serviços de Elaboração de Programas Ltda</Copyright>
+        <PackageTags>dotnetcafe;cnpj;cpf</PackageTags>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE" Pack="true" PackagePath="" />
+    </ItemGroup>
+
 </Project>
