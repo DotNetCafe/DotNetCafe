@@ -94,4 +94,4 @@ public class Program
 
 [N.P.]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
 [0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
-[0.2.0]: httos://github.com/DotNetCafe/DotNetCafe/tree/v0.2.0/
+[0.2.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.2.0/
