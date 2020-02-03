@@ -2,23 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-
     <PackageId>DotNetCafe</PackageId>
-    <VersionPrefix>0.1.0</VersionPrefix>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/DotNetCafe/DotNetCafe.git</RepositoryUrl>
-    <Authors>nokcode</Authors>
-    <Copyright>Rafael Silva Prestação de Serviços de Elaboração de Programas Ltda</Copyright>
-    <PackageTags>dotnetcafe;cnpj</PackageTags>
-
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Description>Tipos comuns para desenvolvedores brasileiros.</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="../../LICENSE" Pack="true" PackagePath="" />
-  </ItemGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">

@@ -7,6 +7,8 @@ e este projeto adere ao [Versionamento Semântico].
 
 ## [Não publicado]
 
+## [0.2.0] - 2020-02-03
+
 ### Adicionado
 
 - O escudo ".Net Core 3.1" com o status de build e test no arquivo README. [@nokcode]
@@ -29,6 +31,7 @@ e este projeto adere ao [Versionamento Semântico].
 
 [Não publicado]: https://github.com/DotNetCafe/DotNetCafe/tree/master/
 [0.1.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.1.0/
+[0.2.0]: https://github.com/DotNetCafe/DotNetCafe/tree/v0.2.0/
 
 [@nokcode]: https://github.com/nokcode/
 
