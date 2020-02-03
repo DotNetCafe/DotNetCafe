@@ -2,25 +2,20 @@ namespace DotNetCafe.Internals
 {
     internal static class CnpjComparer
     {
-        public static int Compare(object lhs, object rhs)
+        public static int Compare(Cnpj lhs, object rhs)
         {
-            if (!(lhs is Cnpj))
-            {
-                return -1;
-            }
-
             if (!(rhs is Cnpj))
             {
                 return 1;
             }
 
-            return Compare((Cnpj) lhs, (Cnpj) rhs);
+            return Compare(lhs, (Cnpj) rhs);
         }
 
         public static int Compare(Cnpj lhs, Cnpj rhs)
         {
-            long x = lhs.value;
-            long y = rhs.value;
+            long x = lhs.number;
+            long y = rhs.number;
 
             if (x > y)
             {

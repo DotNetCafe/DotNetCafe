@@ -7,11 +7,11 @@ namespace DotNetCafe
     {
         public static readonly Cnpj Empty = new Cnpj();
 
-        internal readonly long value;
+        internal readonly long number;
 
         internal Cnpj(long number)
         {
-            value = number;
+            this.number = number;
         }
 
         public Cnpj(string s)

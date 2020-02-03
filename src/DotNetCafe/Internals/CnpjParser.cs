@@ -1,58 +1,51 @@
 using System;
+using System.Diagnostics;
 using DotNetCafe.Globalization;
+using static DotNetCafe.Internals.CnpjFormatInfo;
 
 namespace DotNetCafe.Internals
 {
     internal static class CnpjParser
     {
-        private const string Format1 = @"099.999.999/9999-99";
-        private const string Format2 = @"99.999.999/9999-99";
-        private const string Format3 = @"099999999999999";
-        private const string Format4 = @"99999999999999";
+        private const int FirstCheckDigitPosition = 12;
+        private const int SecondCheckDigitPosition = 13;
 
-        private const int Format1Length = 19;
-        private const int Format2Length = 18;
-        private const int Format3Length = 15;
-        private const int Format4Length = 14;
-
-        private static readonly int[] FirstDigitCheckerWeights =
+        private static readonly int[] FirstCheckDigitWeights =
             new int[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-        private static readonly int[] SecondDigitCheckerWeights =
+        private static readonly int[] SecondCheckDigitWeights =
             new int[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
         
         private enum ParseExceptionKind 
         {
+            None,
             Argument,
             Format
         }
 
         private struct ParseResult
         {
-            internal Cnpj result;
-            internal bool succeed;
+            internal long result;
             internal string paramName;
-            private ParseExceptionKind exceptionKind;
+            internal ParseExceptionKind exceptionKind;
 
-            internal void SetException(ParseExceptionKind kind)
-            {
-                exceptionKind = kind;
-            }
+            internal bool Succeed => exceptionKind == ParseExceptionKind.None;
 
             internal Exception GetException()
             {
-                return exceptionKind switch
+                switch (exceptionKind)
                 {
-                    ParseExceptionKind.Argument => 
-                        new ArgumentException(SR.ArgumentException_InvalidCnpjNumber, 
-                            paramName),
-                    
-                    ParseExceptionKind.Format => 
-                        new FormatException(SR.FormatException_InvalidCnpjFormat),
+                    case ParseExceptionKind.Argument:
+                        return new ArgumentException(SR.ArgumentException_InvalidCnpjNumber,
+                            paramName);
 
-                    _ => 
-                        new InvalidOperationException(),
-                };
+                    case ParseExceptionKind.Format:
+                        return new FormatException(SR.FormatException_InvalidCnpjFormat);
+
+                    case ParseExceptionKind.None:
+                    default:
+                        throw new InvalidOperationException();
+                }
             }
         }
 
@@ -63,9 +56,9 @@ namespace DotNetCafe.Internals
 
             TryParseCnpj(ref pr, s);
 
-            if (pr.succeed)
+            if (pr.Succeed)
             {
-                return pr.result;
+                return new Cnpj(pr.result);
             }
 
             throw pr.GetException();
@@ -78,64 +71,72 @@ namespace DotNetCafe.Internals
 
             TryParseCnpj(ref pr, s);
 
-            result = pr.result;
-            return pr.succeed;
+            result = new Cnpj(pr.result);
+            return pr.Succeed;
         }
 
-        private static void TryParseCnpj(ref ParseResult pr, ReadOnlySpan<char> src)
+        private static void TryParseCnpj(ref ParseResult pr, ReadOnlySpan<char> source)
         {
-            if (src.Length > Format1Length)
+            if (source.Length == 0 ||
+                source.Length != GeneralFormatLength &&
+                source.Length != GeneralFormat2Length &&
+                source.Length != NumericFormatLength &&
+                source.Length != NumericFormat2Length)
             {
-                pr.SetException(ParseExceptionKind.Format);
+                Debug.WriteLine("FAIL: invalid length.");
+                pr.exceptionKind = ParseExceptionKind.Format;
                 return;
             }
 
-            ReadOnlySpan<char> fmt = GetFormatFromLength(src.Length);            
-            Span<char> dst = new char[] 
-            { 
-                '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' 
-            };
-
-            for (int i = src.Length - 1, j = Format4Length; i >= 0; i--)
+            if (!MaskParser.TryParse(source, GetFormat(source.Length), 14, out Span<char> numeric))
             {
-                if (fmt[i] == '9' && Char.IsDigit(src[i]))
-                {
-                    dst[--j] = src[i];
-                    continue;
-                }
-                
-                if (fmt[i] != src[i])
-                {
-                    pr.SetException(ParseExceptionKind.Format);
-                    return;
-                }
-            }
-
-            if (dst[8..12].SequenceEqual("0000"))
-            {
-                pr.SetException(ParseExceptionKind.Argument);
+                Debug.WriteLine("FAIL: invalid format.");
+                pr.exceptionKind = ParseExceptionKind.Format;
                 return;
             }
 
-            if (Char.GetNumericValue(dst[12]) != DigitChecker.Get(dst, FirstDigitCheckerWeights) ||
-                Char.GetNumericValue(dst[13]) != DigitChecker.Get(dst, SecondDigitCheckerWeights))
+            if (numeric[8..12].SequenceEqual("0000"))
             {
-                pr.SetException(ParseExceptionKind.Argument);
+                Debug.WriteLine("FAIL: zeroed order number.");
+                pr.exceptionKind = ParseExceptionKind.Argument;
                 return;
             }
 
-            pr.result = new Cnpj(Int64.Parse(dst));
-            pr.succeed = true;
+            if (!long.TryParse(numeric, out long number))
+            {
+                Debug.WriteLine("FAIL: isn't numeric");
+                pr.exceptionKind = ParseExceptionKind.Format;
+                return;
+            }
+
+            if (Char.GetNumericValue(numeric[FirstCheckDigitPosition]) != 
+                CheckDigit.Calculate(numeric, FirstCheckDigitWeights))
+            {
+                Debug.WriteLine("FAIL: DC1 isn't {0}", CheckDigit.Calculate(numeric, FirstCheckDigitWeights));
+                pr.exceptionKind = ParseExceptionKind.Argument;
+                return;
+            }
+
+            if (Char.GetNumericValue(numeric[SecondCheckDigitPosition]) != 
+                CheckDigit.Calculate(numeric, SecondCheckDigitWeights))
+            {
+                Debug.WriteLine("FAIL: DC2 isn't {0}", CheckDigit.Calculate(numeric, FirstCheckDigitWeights));
+                pr.exceptionKind = ParseExceptionKind.Argument;
+                return;
+            }
+
+            pr.result = number;
         }
 
-        private static ReadOnlySpan<char> GetFormatFromLength(int length)
+        private static ReadOnlySpan<char> GetFormat(int length)
         {
             return length switch
             {
-                Format1Length => Format1,
-                Format2Length => Format2,
-                Format3Length => Format3,
-                _ => Format4
+                GeneralFormatLength => GeneralFormatMask,
+                GeneralFormat2Length => GeneralFormat2Mask,
+                NumericFormatLength => NumericFormatMask,
+                NumericFormat2Length => NumericFormat2Mask,
+                _ => throw new InvalidOperationException()
             };
         }
     }
