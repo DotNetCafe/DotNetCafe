@@ -31,6 +31,9 @@ namespace DotNetCafe.Globalization
         
         public static string FormatException_InvalidCpfFormat =>
             GetString(nameof(FormatException_InvalidCpfFormat));
+        
+        public static string FormatException_InvalidCepFormat =>
+            GetString(nameof(FormatException_InvalidCepFormat));
 
         private static string GetString(string name) =>
             Resources.GetString(name);
