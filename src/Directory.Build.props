@@ -8,7 +8,7 @@
         <RepositoryUrl>https://github.com/DotNetCafe/DotNetCafe.git</RepositoryUrl>
         <Authors>nokcode</Authors>
         <Copyright>Rafael Silva Prestação de Serviços de Elaboração de Programas Ltda</Copyright>
-        <PackageTags>dotnetcafe;cnpj;cpf</PackageTags>
+        <PackageTags>dotnetcafe;cnpj;cpf;cep</PackageTags>
 
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>

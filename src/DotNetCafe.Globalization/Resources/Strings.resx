@@ -15,4 +15,7 @@
     <data name="FormatException_InvalidCpfFormat">
         <value>Invalid CPF format.</value>
     </data>
+    <data name="FormatException_InvalidCepFormat">
+        <value>Invalid CEP format.</value>
+    </data>
 </root>
