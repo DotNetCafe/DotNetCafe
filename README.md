@@ -13,9 +13,9 @@ O **DotNetCafe** é uma biblioteca com tipos complexos bem definidos.
 ## Compatibilidade
 
 ### .Net Core e .NET Standard
-DotNetCafe | .Net Core | .Net Standard
----------- | --------- | -------------
-0.2.0      | 3.1       | 2.1          
+.Net Core | .Net Standard
+--------- | -------------
+3.1       | 2.1
 
 ### Tipos Suportados
 
