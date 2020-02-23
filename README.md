@@ -39,7 +39,7 @@ IFormattable      | [0.1.0] | [0.2.0] | [0.3.0]
 ### 1. Configure o CSPROJ
 
 ```xml
-<PackageReference Include="DotNetCafe" Version="0.2.0" />
+<PackageReference Include="DotNetCafe" Version="0.3.0" />
 ```
 
 ### 2. Restaure os pacotes
